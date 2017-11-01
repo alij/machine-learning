@@ -12862,7 +12862,7 @@ Fill in the missing code below so that the function will make this prediction.<b
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">predictions_2</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -12873,7 +12873,7 @@ Fill in the missing code below so that the function will make this prediction.<b
     <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">passenger</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
         
-        <span class="k">if</span><span class="p">(</span><span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span> <span class="ow">and</span> <span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">)):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> <span class="ow">or</span> <span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">):</span>
             <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -12886,6 +12886,31 @@ Fill in the missing code below so that the function will make this prediction.<b
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-8ef271bd7bce&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">     16</span> 
+<span class="ansi-green-fg">     17</span> <span class="ansi-red-intense-fg ansi-bold"># Make the predictions</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 18</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>predictions <span class="ansi-yellow-intense-fg ansi-bold">=</span> predictions_2<span class="ansi-yellow-intense-fg ansi-bold">(</span>data<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;data&#39; is not defined</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13201,15 +13226,7 @@ Make sure to keep track of the various features and conditions you tried before 
     <span class="sd">&quot;&quot;&quot; Model with multiple features. Makes a prediction with an accuracy of at least 80%. &quot;&quot;&quot;</span>
     
     <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">passenger</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-        
-        <span class="c1">#Initially I went with just the prediction_2 conditions and focused on getting a better result using males only.</span>
-        <span class="c1">#However, I realized after exploring the males data that using that alone won&#39;t help me with getting 80%. Though</span>
-        <span class="c1">#that exercise did lead me to find that the first class males aged &lt; 18 was an improvment.</span>
-        
-        <span class="c1">#Next, I started to look into how I could improve prediction_2. I discarded females with Pclass 3 as a result.        </span>
-        <span class="c1">#Finally I found that females aged &gt; 50 and with Parch &lt; 3 had a better survival chance.</span>
-        
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">passenger</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>              
         <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Pclass&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span> 
            <span class="ow">or</span> <span class="p">(</span> <span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Sex&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span> <span class="ow">and</span> <span class="n">passenger</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">):</span>
             <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>        
@@ -13279,7 +13296,19 @@ Make sure to keep track of the various features and conditions you tried before 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer</strong>: <em>80.13%</em></p>
+<p><strong>Answer</strong>:<br>
+<strong>What features did you look at?</strong><br>
+   I looked at Pclass, Sex, Age, SibSp, and Parch.</p>
+<p><strong>Were certain features more informative than others?</strong><br>
+   Yes, Sex and Pclass were more informative.</p>
+<p><strong>Which conditions did you use to split the survival outcomes in the data?</strong><br>
+   Initially I went with just the prediction_2 conditions and focused on getting a better result using males only.
+   However, I realized after exploring the males data that using that alone won't help me with getting 80%. Though
+   that exercise did lead me to find that the first class males aged &lt; 18 was an improvment.</p>
+<p>Next, I started to look into how I could improve prediction_2. I discarded females with Pclass 3 as a result.<br>
+   Finally I found that females aged &gt; 50 and with Parch &lt; 3 had a better survival chance.</p>
+<p><strong>How accurate are your predictions?</strong>
+    80.13%</p>
 
 </div>
 </div>
