@@ -12917,7 +12917,7 @@ SJIkSWrNAkKSJElSaxYQkiRJklqzgJAkSZLUmgWEJEmSpNYsICRJkiS1ZgEhSZIkqbX/Dw7mqWDp
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: One-hot encode the &#39;features_log_minmax_transform&#39; data using pandas.get_dummies()</span>
@@ -12925,6 +12925,8 @@ SJIkSWrNAkKSJElSaxYQkiRJklqzgJAkSZLUmgWEJEmSpNYsICRJkiS1ZgEhSZIkqbX/Dw7mqWDp
 
 <span class="c1"># TODO: Encode the &#39;income_raw&#39; data to numerical values</span>
 <span class="n">income</span> <span class="o">=</span> <span class="n">income_raw</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="s1">&#39;&lt;=50K&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;50K&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="c1">#or</span>
+<span class="c1">#income = pd.get_dummies(income_raw)[&#39;&gt;50K&#39;]</span>
 
 <span class="c1"># Print the number of features after one-hot encoding</span>
 <span class="n">encoded</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">features_final</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -12970,7 +12972,7 @@ SJIkSWrNAkKSJElSaxYQkiRJklqzgJAkSZLUmgWEJEmSpNYsICRJkiS1ZgEhSZIkqbX/Dw7mqWDp
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import train_test_split</span>
@@ -13003,18 +13005,6 @@ SJIkSWrNAkKSJElSaxYQkiRJklqzgJAkSZLUmgWEJEmSpNYsICRJkiS1ZgEhSZIkqbX/Dw7mqWDp
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training set has 36177 samples.
 Testing set has 9045 samples.
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\m.ali\AppData\Local\Continuum\anaconda2\lib\site-packages\sklearn\cross_validation.py:41: DeprecationWarning: This module was deprecated in version 0.18 in favor of the model_selection module into which all the refactored classes and functions are moved. Also note that the interface of the new CV iterators are different from that of this module. This module will be removed in 0.20.
-  &#34;This module will be removed in 0.20.&#34;, DeprecationWarning)
 </pre>
 </div>
 </div>
@@ -13072,7 +13062,7 @@ It is a ratio of true positives(words classified as spam, and which are actually
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">TP</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">income</span><span class="p">)</span> <span class="c1"># Counting the ones as this is the naive case. Note that &#39;income&#39; is the &#39;income_raw&#39; data </span>
@@ -13084,8 +13074,8 @@ It is a ratio of true positives(words classified as spam, and which are actually
 
 <span class="c1"># TODO: Calculate accuracy, precision and recall</span>
 <span class="n">accuracy</span> <span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">TN</span><span class="p">)</span><span class="o">/</span><span class="n">income</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="n">recall</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TP</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
-<span class="n">precision</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TP</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
+<span class="n">precision</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TP</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FP</span><span class="p">)</span>
+<span class="n">recall</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">TP</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span><span class="o">+</span><span class="n">FN</span><span class="p">)</span>
 
 <span class="c1"># TODO: Calculate F-score using the formula above for beta = 0.5 and correct values for precision and recall.</span>
 <span class="n">fscore</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
@@ -13108,7 +13098,7 @@ It is a ratio of true positives(words classified as spam, and which are actually
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Naive Predictor: [Accuracy score: 0.2478, F-score: 0.6223]
+<pre>Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </pre>
 </div>
 </div>
@@ -13172,20 +13162,24 @@ A real world application of KNN in the healthcare domain could be a sort of reco
 It is a simpler and easier to understand algorithm which uses instance based training. It works well on basic recognition problems. We don't have a lot of parameters to tune other than K.</p>
 <p><strong>Weeknesses:</strong>
 Distance-based function is not easy to figure out for different problems. It can be slow for large number of training examples as it does not learn from training data but instead uses all of the training data for classification.</p>
-<h3 id="Ensemble-Methods">Ensemble Methods<a class="anchor-link" href="#Ensemble-Methods">&#182;</a></h3><p><strong>Why:</strong>
-I have chosen ensemble methods to try as last as they are more complex but could provide better predictions by mixing diverse classifiers.</p>
-<p><strong>Real World Application:</strong>
-Ensemble methods can be used to classify similar problems as stated in KNeigbors and SVM. Moreover, most Machine Learning competition winners use ensemble methods.</p>
+<p><strong>Why</strong>
+I chose KNN because it's non-parametric and instance based. This makes it a good contrast to the other two algorithms as well as a hedge in case we have unusual data.</p>
+<h3 id="Ensemble-Methods">Ensemble Methods<a class="anchor-link" href="#Ensemble-Methods">&#182;</a></h3><p><strong>Real World Application:</strong>
+Ensemble methods can be used to classify similar problems as stated in KNeigbors and SVM. Moreover, most Machine Learning competition winners use ensemble methods. I will be using Adaboost for this problem. Adaboost has been used in different classification problems such as face and body part detections.</p>
 <p><strong>Strengths:</strong>
-Ensemble methods can have improved predictive performance. They are easy to implement and don't need too much tuning.</p>
+Ensemble methods can have improved predictive performance. They are easy to implement and don't need too much tuning. The advantages of Adaboost in particular are that is is computationally efficient and doesn't have any difficult parameters to set.</p>
 <p><strong>Weeknesses:</strong>
-The resulting classifier behaves as a blackbox as we don't exactly know how it works.</p>
+Adaboost algorithm is susceptible to noise and requires enough data so that the base learner can perform consistently better than random guessing.</p>
+<p><strong>Why:</strong>
+I have chosen Adaboost to try as the last approach, since it's more complex but could provide better classification, in case the LinearSVC and KNN don't work.</p>
 <p><strong>References</strong></p>
 <p>[1]<a href="http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html</a></p>
 <p>[2]<a href="http://scikit-learn.org/stable/modules/svm.html">http://scikit-learn.org/stable/modules/svm.html</a></p>
 <p>[3]<a href="https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor">https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor</a></p>
 <p>[4]<a href="http://www.nickgillian.com/wiki/pmwiki.php/GRT/KNN">http://www.nickgillian.com/wiki/pmwiki.php/GRT/KNN</a></p>
 <p>[5]<a href="https://www.isima.fr/~vbarra/IMG/pdf/ensemble.pdf">https://www.isima.fr/~vbarra/IMG/pdf/ensemble.pdf</a></p>
+<p>[6]<a href="https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/">https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/</a></p>
+<p>[7]<a href="http://video.udacity-data.com.s3.amazonaws.com/topher/2017/June/593cdeca_intro-to-boosting/intro-to-boosting.pdf">http://video.udacity-data.com.s3.amazonaws.com/topher/2017/June/593cdeca_intro-to-boosting/intro-to-boosting.pdf</a></p>
 
 </div>
 </div>
@@ -14175,11 +14169,16 @@ Following is the ordering of the algorithms based on metrics:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Adaboost is an ensemble method that uses multiple week classifiers to create a strong classifier. A week classifier is one which has a performance that is just better than random chance.</p>
-<p>The training process starts by creating the first model from training data where uniform weights are assigned to the instance data. Subsequent models attempt to reduce errors from the previous models by giving more weightage to the instances that were incorrectly classified. This process continues untill an error threshold or a limit of maximum models is reached. The end result is a number of weighted weak classifiers where the weight of the classifier depends upon its error.</p>
-<p>The prediction is made by calculating the weighted average of the results returned from all the weak classifiers.</p>
+<p>Adaboost is an ensemble method that uses multiple weak classifiers to create a strong classifier. A weak classifier is one which has a performance that is just better than random guessing. A simple example of a weak classifier could be to classify gender based on height. We could say that anyone over 5'9" is a male. We will misclassify a lot but still do better than chance.</p>
+<p>Adaboost uses decision trees (with a depth of 1) as the weak learners. Decision trees are predictive models that go from observations about an item (represented by the branches of a tree) to conclusions about the item's target values (represented in the leaves).</p>
+<p>The earlier example weak learner can be easily modeled using a one-level decision tree, also called a decision stump. The root node in a decision stump is directly connected to the leaves. This decision stump will take the height as input and if the height is greater than 5'9" will output "male", otherwise "female".</p>
+<p>The training process starts by creating a classifier from a random subset of training data. After training the classifier,
+Adaboost assigns a weight to each training example which determines the probability of that example appearing in the training set. Adaboost increases the weight on misclassified examples so that they become a larger part of the next classifier's training set. Thus the next classifier trained would perform better. This process continues untill an error threshold or a limit of maximum classifiers is reached.</p>
+<p>The end result is a number of weighted weak classifiers where the weight of the classifier depends upon its accuracy. More accurate classifiers are given more weight. The final prediction is made by calculating the weighted average of the results returned from all the weak classifiers.</p>
 <p><strong>Reference</strong>:</p>
 <p>[1] <a href="https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/">https://machinelearningmastery.com/boosting-and-adaboost-for-machine-learning/</a></p>
+<p>[2] <a href="http://mccormickml.com/2013/12/13/adaboost-tutorial/">http://mccormickml.com/2013/12/13/adaboost-tutorial/</a></p>
+<p>[3] <a href="https://en.wikipedia.org/wiki/Decision_tree_learning">https://en.wikipedia.org/wiki/Decision_tree_learning</a></p>
 
 </div>
 </div>
